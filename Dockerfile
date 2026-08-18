@@ -15,7 +15,7 @@ FROM python:alpine
 
 COPY --from=builder /opt/venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH" \
-        PYTHONUNBUFFERED="yes"
+	PYTHONUNBUFFERED="yes"
 
 RUN adduser -D appuser && \
 	install -d -o appuser -g appuser -m 0755 /home/appuser/.tradingagents
