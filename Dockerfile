@@ -1,4 +1,4 @@
-FROM python:slim AS builder
+FROM python:3.14-slim AS builder
 
 RUN python -m venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH" \
@@ -11,10 +11,9 @@ RUN apt-get update && \
 WORKDIR /source
 RUN git clone --depth 1 \
 	https://github.com/TauricResearch/TradingAgents.git .
-RUN pip install --no-cache-dir zstandard && \
-	pip install --no-cache-dir .
+RUN pip install --no-cache-dir .
 
-FROM python:slim
+FROM python:3.14-slim
 
 COPY --from=builder /opt/venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH" \
