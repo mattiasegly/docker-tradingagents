@@ -11,7 +11,8 @@ RUN apt-get update && \
 WORKDIR /source
 RUN git clone --depth 1 \
 	https://github.com/TauricResearch/TradingAgents.git .
-RUN pip install --no-cache-dir .
+RUN pip install --no-cache-dir zstandard && \
+	pip install --no-cache-dir .
 
 FROM python:slim
 
